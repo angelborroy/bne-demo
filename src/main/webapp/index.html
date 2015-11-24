@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <!-- Using same versions as POM.XML (!) -->
+    <link rel="stylesheet" href="webjars/bootstrap/3.3.5/css/bootstrap.css">
+    <link rel="stylesheet" href="webjars/bootstrap-material-design/0.3.0/css/material.css">
+    <title>BNE Test webapp</title>
+</head>
+<body ng-controller="UsersController" style="background-color: #fff">
+
+<div class="row">
+    <div class="container">
+		<div id="header" class="col-sm-offset-1 col-sm-10">
+		    <img src="resources/img/logoBNE.jpg"/><img src="resources/img/biblioteca-nacional-espana.gif"/>
+		</div>
+	</div>
+</div>
+        
+<div class="row">
+    <br>
+    <div class="container">
+        <div id="userList" class="col-sm-offset-1 col-sm-10">
+            <div class="input-group">
+                <input class="form-control" id="search" name="search" placeholder="Búsqueda..." ng-model="query"
+                       required="required"/>
+              <span class="input-group-btn">
+                  <button type="submit" class="btn btn-default">
+                      <i class="glyphicon glyphicon-search"></i>
+                  </button>
+              </span>
+            </div>
+            <div class="list-group">
+                <div class="list-group-item">
+                    <div ng-repeat="user in users | filter:query" class="list-group-item" style="margin-top:16px">
+                        <div ng-if="user.pictureId == 0" class="row-picture">
+                            <img class="circle"
+                                 src="resources/img/woman.png"
+                                 alt="icon">
+                        </div>
+                        <div ng-if="user.pictureId == 1" class="row-picture">
+                            <img class="circle"
+                                 src="resources/img/man.png"
+                                 alt="icon">
+                        </div>
+                        <div class="row-content">
+                            <h4 class="list-group-item-heading">{{user.firstName}} {{user.familyName}}</h4>
+                            <p class="list-group-item-text"><a href="mailto:{{user.email}}"><i class="glyphicon glyphicon-envelope">&nbsp;{{user.email}}</i></a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Using same versions as POM.XML (!) -->
+<script type="text/javascript" src="webjars/jquery/2.1.4/jquery.js"></script>
+<script type="text/javascript" src="webjars/angularjs/1.4.7/angular.min.js"></script>
+<script type="text/javascript" src="webjars/angularjs/1.4.7/angular-resource.min.js"></script>
+<script type="text/javascript" src="webjars/bootstrap-material-design/0.3.0/js/material.js"></script>
+<script type="text/javascript" src="resources/js/app.js"></script>
+
+</body>
+</html>
